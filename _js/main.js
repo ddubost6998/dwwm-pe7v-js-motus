@@ -3,7 +3,7 @@ function getPlayerName() {
     return playerName;
 }
 
-const wordList = ["abricot", "banana", "citron", "danseur", "éclair", "farine", "girafe", "héros", "insigne", "jouets"];
+const wordList = ["abcise", "codage", "python", "icones", "geeker", "boomer", "avance", "banque", "voyage", "jouets"];
 
 function getRandomWord() {
     const randomIndex = Math.floor(Math.random() * wordList.length);
