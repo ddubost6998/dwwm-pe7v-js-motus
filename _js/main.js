@@ -47,7 +47,7 @@ function checkGuess(word, guess) {
 }
 
 function updateGameBoard(result, guess) {
-    const gameBoardRow = document.getElementById("guess-row");
+    const gameBoardRow = document.querySelector("guess-board");
     const cells = gameBoardRow.querySelectorAll(".cell");
     let i = 0;
 
@@ -75,16 +75,16 @@ function playGame(playerName) {
     let attempts = 0;
     const secretWord = getRandomWord();
 
-    const gameBoardRow = document.getElementById("guess-row");
+    const gameBoardRow = document.querySelector("guess-row");
     const cells = gameBoardRow.querySelectorAll(".cell");
     cells[0].textContent = secretWord[0];
 
     alert(`C'est parti ${playerName} ! Le mot secret a 6 lettres. Commencez à deviner.`);
 
-    const guessForm = document.getElementById("guess-form");
+    const guessForm = document.querySelector("guess-form");
     guessForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        const guessInput = document.getElementById("guess-input").value.toLowerCase();
+        const guessInput = document.querySelector("guess-input").value.toLowerCase();
 
         if (attempts >= maxAttempts) {
             alert(`Désolé, ${playerName}. Vous avez atteint le nombre maximum de tentatives. Le mot secret était "${secretWord}".`);
