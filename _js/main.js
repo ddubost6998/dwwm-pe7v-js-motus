@@ -104,6 +104,15 @@ function playGame(playerName) {
     });
 }
 
+function askToPlayAgain() {
+    const playAgain = confirm("Voulez-vous jouer à nouveau?");
+    if (playAgain) {
+        location.reload();
+    } else {
+        alert("Merci d'avoir joué!");
+    }
+}
+
 window.addEventListener('DOMContentLoaded', function () {
     const playerName = getPlayerName();
     if (playerName) {
