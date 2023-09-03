@@ -5,6 +5,11 @@ function getPlayerName() {
 
 const wordList = ["abricot", "banana", "citron", "danseur", "éclair", "farine", "girafe", "héros", "insigne", "jouets"];
 
+function getRandomWord() {
+    const randomIndex = Math.floor(Math.random() * wordList.length);
+    return wordList[randomIndex];
+}
+
 window.addEventListener('DOMContentLoaded', function () {
     const playerName = getPlayerName();
     if (playerName) {
