@@ -46,10 +46,38 @@ function checkGuess(word, guess) {
     return result;
 }
 
+function updateGameBoard(result, guess) {
+    const gameBoardRow = document.getElementById("guess-row");
+    const cells = gameBoardRow.querySelectorAll(".cell");
+    let i = 0;
+
+    while (i < cells.length) {
+        cells[i].textContent = guess[i];
+        cells[i].classList.remove("wellplaced", "misplaced");
+        i++;
+    }
+
+    i = 0;
+    while (i < result.wellplaced) {
+        cells[i].classList.add("wellplaced");
+        i++;
+    }
+
+    let j = i;
+    while (j < i + result.misplaced) {
+        cells[j].classList.add("misplaced");
+        j++;
+    }
+}
+
 function playGame(playerName) {
     const maxAttempts = 10;
     let attempts = 0;
     const secretWord = getRandomWord();
+
+    const gameBoardRow = document.getElementById("guess-row");
+    const cells = gameBoardRow.querySelectorAll(".cell");
+    cells[0].textContent = secretWord[0];
 
     alert(`C'est parti ${playerName} ! Le mot secret a 6 lettres. Commencez à deviner.`);
 
