@@ -3,6 +3,8 @@ function getPlayerName() {
     return playerName;
 }
 
+const wordList = ["abricot", "banana", "citron", "danseur", "éclair", "farine", "girafe", "héros", "insigne", "jouets"];
+
 window.addEventListener('DOMContentLoaded', function () {
     const playerName = getPlayerName();
     if (playerName) {
