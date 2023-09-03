@@ -73,7 +73,7 @@ function updateGameBoard(result, guess) {
 function askToPlayAgain() {
     const playAgain = confirm("Voulez-vous jouer à nouveau?");
     if (playAgain) {
-        location.reload(); // Recharge la page pour recommencer le jeu.
+        location.reload();
     } else {
         alert("Merci d'avoir joué!");
     }
