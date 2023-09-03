@@ -1,3 +1,5 @@
+"use strict";
+
 function getPlayerName() {
     const playerName = prompt("Entrez votre nom :");
     return playerName;
