@@ -47,7 +47,7 @@ function checkGuess(word, guess) {
 }
 
 function updateGameBoard(result, guess) {
-    const gameBoardRow = document.querySelector("#game-board tr");
+    const gameBoardRow = document.querySelector("#game-board tbody tr");
     const cells = gameBoardRow.querySelectorAll(".cell");
     let i = 0;
 
@@ -70,6 +70,15 @@ function updateGameBoard(result, guess) {
     }
 }
 
+function askToPlayAgain() {
+    const playAgain = confirm("Voulez-vous jouer à nouveau?");
+    if (playAgain) {
+        location.reload(); // Recharge la page pour recommencer le jeu.
+    } else {
+        alert("Merci d'avoir joué!");
+    }
+}
+
 function playGame(playerName) {
     const maxAttempts = 10;
     let attempts = 0;
@@ -82,13 +91,16 @@ function playGame(playerName) {
     alert(`C'est parti ${playerName} ! Le mot secret a 6 lettres. Commencez à deviner.`);
 
     const guessForm = document.querySelector("#guess-form");
-    guessForm.addEventListener("submit", function (event) {
+    guessForm.addEventListener("submit", submitHandler);
+
+    function submitHandler(event) {
         event.preventDefault();
         const guessInput = document.querySelector("#guess-input").value.toLowerCase();
 
         if (attempts >= maxAttempts) {
             alert(`Désolé, ${playerName}. Vous avez atteint le nombre maximum de tentatives. Le mot secret était "${secretWord}".`);
-            guessForm.removeEventListener("submit");
+            askToPlayAgain();
+            guessForm.removeEventListener("submit", submitHandler);
         } else if (guessInput.length !== 6) {
             alert("Le mot doit contenir exactement 6 lettres.");
         } else {
@@ -100,21 +112,8 @@ function playGame(playerName) {
                 alert(`Félicitations, ${playerName} ! Vous avez trouvé le mot secret "${secretWord}" en ${attempts} tentatives.`);
                 askToPlayAgain();
                 guessForm.removeEventListener("submit", submitHandler);
-            } else if (attempts >= maxAttempts) {
-                alert(`Désolé, ${playerName}. Vous avez atteint le nombre maximum de tentatives. Le mot secret était "${secretWord}".`);
-                askToPlayAgain();
-                guessForm.removeEventListener("submit", submitHandler);
             }
         }
-    });
-}
-
-function askToPlayAgain() {
-    const playAgain = confirm("Voulez-vous jouer à nouveau?");
-    if (playAgain) {
-        location.reload();
-    } else {
-        alert("Merci d'avoir joué!");
     }
 }
 
