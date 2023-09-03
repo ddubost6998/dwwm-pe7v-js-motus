@@ -10,6 +10,42 @@ function getRandomWord() {
     return wordList[randomIndex];
 }
 
+function checkGuess(word, guess) {
+    const result = { wellplaced: 0, misplaced: 0 };
+    const usedIndexes = [];
+
+    let i = 0;
+    while (i < word.length) {
+        if (word[i] === guess[i]) {
+            result.wellplaced++;
+            usedIndexes.push(i);
+        }
+        i++;
+    }
+
+    i = 0;
+    while (i < word.length) {
+        if (usedIndexes.includes(i)) {
+            i++;
+            continue;
+        }
+
+        let j = 0;
+        let found = false;
+        while (j < word.length && !found) {
+            if (!usedIndexes.includes(j) && word[i] === guess[j]) {
+                result.misplaced++;
+                usedIndexes.push(j);
+                found = true;
+            }
+            j++;
+        }
+        i++;
+    }
+
+    return result;
+}
+
 function playGame(playerName) {
     const maxAttempts = 10;
     let attempts = 0;
