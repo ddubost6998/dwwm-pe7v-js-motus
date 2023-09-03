@@ -98,7 +98,12 @@ function playGame(playerName) {
 
             if (result.wellplaced === 6) {
                 alert(`Félicitations, ${playerName} ! Vous avez trouvé le mot secret "${secretWord}" en ${attempts} tentatives.`);
-                guessForm.removeEventListener("submit");
+                askToPlayAgain();
+                guessForm.removeEventListener("submit", submitHandler);
+            } else if (attempts >= maxAttempts) {
+                alert(`Désolé, ${playerName}. Vous avez atteint le nombre maximum de tentatives. Le mot secret était "${secretWord}".`);
+                askToPlayAgain();
+                guessForm.removeEventListener("submit", submitHandler);
             }
         }
     });
